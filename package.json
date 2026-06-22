@@ -1,0 +1,24 @@
+{
+  "name": "tp_9",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/SantiagoChoe/TP_9_DAI#readme",
+  "bugs": {
+    "url": "https://github.com/SantiagoChoe/TP_9_DAI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SantiagoChoe/TP_9_DAI.git"
+  },
+  "license": "ISC",
+  "author": "Santiago Choe & Hong",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  }
+}
