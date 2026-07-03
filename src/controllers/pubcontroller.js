@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import instagramService from '../services/instagramService.js';
+import jwt from "jsonwebtoken"
+import PubService from '../services/pubservice.js';
 const router = Router();
-const svc = new instagramService();
+const svc = new PubService();
 
-
-
-router.post('/Registro', async (req, res) => {
+router.post('/registro', async (req, res) => {
   let respuesta;
   const error = await svc.createAsync(req.body);
   if (error == null) {
@@ -15,7 +14,5 @@ router.post('/Registro', async (req, res) => {
   }
   return respuesta;
 })
-
-
 
 export default router;
