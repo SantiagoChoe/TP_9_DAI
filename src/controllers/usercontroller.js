@@ -5,6 +5,9 @@ import UserService from '../services/userservice.js';
 const router = Router();
 const svc = new UserService();
 
+
+
+
 router.get('/perfil ', verifyToken, async (req, res) => {
   res.json({ message: 'Ruta protegida accedida', user: req.user });
 });

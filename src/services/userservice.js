@@ -1,5 +1,6 @@
 import config from '../config/db.js';
 import pkg from 'pg';
+import LogHelper from '../helpers/logHelper.js';
 const { Client } = pkg;
 
 export default class UserService {
@@ -24,6 +25,7 @@ export default class UserService {
                 publications: postsResult.rows
             };
         } catch (error) {
+            LogHelper.logError(error);
             error.message = `Error al obtener las publicaciones del perfil: ${error.message}`;
             throw error;
         }
@@ -45,6 +47,7 @@ export default class UserService {
             await client.end();
             return result.rows[0];
         } catch (error) {
+            LogHelper.logError(error);
             error.message = `Error al actualizar el perfil del usuario: ${error.message}`;
             throw error;
         }
