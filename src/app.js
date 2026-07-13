@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
-import InstagramRouter from "./src/controllers/province-controller.js";
+import authRouter from "./routes/auth.js";
+import postsRouter from "./routes/publicaciones.js";
+import usersRouter from "./routes/users.js";
 
 export const app = express();
 
