@@ -1,6 +1,4 @@
 import jwt from "jsonwebtoken"
-import LogHelper from "../helpers/logHelper.js";
-
 
 const SECRET_KEY = process.env.JWT_SECRET; 
 
@@ -20,11 +18,8 @@ const verifyToken = (req, res, next) => {
             next();
         });
     } else {
-        LogHelper.logError(error);
-        res.status(403).json({ message: 'Token requerido' });
+        return res.status(403).json({ message: 'Token requerido' });
     }
-
-    next()
 };
 
 export default verifyToken;

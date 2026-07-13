@@ -1,4 +1,4 @@
-import config from '../config/db.js';
+import config from '../config/dbconfig.js';
 import pkg from 'pg';
 import LogHelper from '../helpers/logHelper.js';
 const { Client } = pkg;
@@ -31,7 +31,7 @@ export default class UserService {
         }
     }
 
-    updateProfile = async (userId, data) => {
+    updateUser = async (userId, data) => {
         const client = new Client(config);
         const { nombre_completo, biografia, foto_perfil } = data;
         try {

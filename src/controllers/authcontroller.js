@@ -35,7 +35,7 @@ router.post('/login', validateUser, async (req, res) => {
   const { nombre_usuario, password } = req.body;
 
   try { 
-    const user = await authService.getUserAsync(nombre_usuario);
+    const user = await svc.getUserAsync(nombre_usuario);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });

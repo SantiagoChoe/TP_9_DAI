@@ -1,5 +1,5 @@
 import e from 'express';
-import config from '../config/db.js';
+import config from '../config/dbconfig.js';
 import pkg from 'pg'
 const { Client, Pool } = pkg;
 

@@ -1,9 +1,9 @@
-import config from '../config/db.js';
+import config from '../config/dbconfig.js';
 import pkg from 'pg';
 const { Client } = pkg;
 
 export default class PostService {
-    getAllPosts = async () => {
+    getAllPostsAsync = async () => {
         const client = new Client(config);
         try {
             await client.connect();
@@ -23,7 +23,7 @@ export default class PostService {
             throw error;
         }
     }
-    createPost = async (postData) => {
+    createPostAsync = async (postData) => {
         const client = new Client(config);
         const { url_imagen, descripcion, usuariod_id } = postData;
         try {
