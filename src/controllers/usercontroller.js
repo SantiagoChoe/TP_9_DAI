@@ -21,7 +21,7 @@ router.get('/perfil ', verifyToken.verifyToken, async (req, res) => {
   }
 });
 
-router.put('/perfil ', verifyToken.verifyToken, async (req, res) => {
+router.put('/perfil', verifyToken.verifyToken, async (req, res) => {
   try {
     const userId = req.user.id;
     const { nombre_completo, biografia, foto_perfil } = req.body;
