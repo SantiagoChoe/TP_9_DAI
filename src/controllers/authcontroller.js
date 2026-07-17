@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken"
 import AuthService from '../services/authservice.js';
 import { validateUser } from "../middlewares/valUser.js";
 import { validateRegister } from '../middlewares/valRegister.js';
+import bcrypt from "bcrypt";
 
 const router = Router();
 const svc = new AuthService();
@@ -11,17 +12,26 @@ const SECRET_KEY = process.env.JWT_SECRET;
 
 router.post('/registro', validateRegister, async (req, res) => {
   const { nombre_usuario , nombre_completo , email, password, biografia , foto_perfil } = req.body;
+  
   try {
     const userExists = await svc.valUserExist(nombre_usuario, email);
     if (userExists) {
       return res.status(400).json({ error: 'El nombre de usuario o el correo electrónico ya están en uso' });
     }
-
-    const error = await svc.createAsync(req.body);
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const error = await svc.createAsync({
+      ...req.body,
+      password: hashedPassword
+    });
     if (error == null) {
       return res.status(201).json({ 
           message: 'Usuario registrado con éxito', 
-          user: createdUser 
+          user: nombre_usuario,
+          user_completo: nombre_completo,
+          email: email,
+          bio: biografia,
+          image: foto_perfil 
       });
     } else {
       return res.status(400).send(error);
@@ -41,12 +51,13 @@ router.post('/login', validateUser, async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    if (nombre_usuario === user.nombre_usuario && password === user.password) {
+    const passwordCorrecta = await bcrypt.compare(password, user.password);
+
+    if (nombre_usuario === user.nombre_usuario && passwordCorrecta) {
       
       const payload = {
         id: user.id,
-        username: user.username,
-        password: user.password,
+        nombre_usuario: user.nombre_usuario,
       };
 
       const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });

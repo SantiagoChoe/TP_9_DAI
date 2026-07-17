@@ -1,4 +1,3 @@
-import e from 'express';
 import config from '../config/dbconfig.js';
 import pkg from 'pg'
 const { Client, Pool } = pkg;
@@ -41,7 +40,7 @@ export default class AuthService {
             const sql = `
                 INSERT INTO "usuario" (nombre_usuario , nombre_completo , email, password, biografia , foto_perfil)
                 VALUES ($1, $2, $3, $4, $5, $6)
-                RETURNING id, username, email; 
+                RETURNING id, nombre_usuario, email; 
             `;
             const values = [nombre_usuario , nombre_completo , email, password, biografia , foto_perfil];
             const result = await client.query(sql, values);

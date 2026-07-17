@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import jwt from "jsonwebtoken"
 import PubService from '../services/pubservice.js';
-import { verifyToken } from "../middlewares/verifyToken.js";
+import verifyToken from "../middlewares/verifyToken.js";
 import { valPost } from "../middlewares/valPost.js";
 const router = Router();
 const svc = new PubService();
@@ -15,11 +14,11 @@ router.get("/", async (req, res) => {
   }
 })
 
-router.post("/", verifyToken.verifyToken, valPost, async (req, res) => {
+router.post("/", verifyToken, valPost, async (req, res) => {
   try {
     const { url_imagen, descripcion } = req.body;
-    const userId = req.user.id; 
-    const newPost = await svc.createPostAsync({ url_imagen, descripcion, userId });
+    const usuariod_id = req.user.id; 
+    const newPost = await svc.createPostAsync({ url_imagen, descripcion, usuariod_id });
     
     return res.status(201).json({ 
         message: 'Publicación creada con éxito', 

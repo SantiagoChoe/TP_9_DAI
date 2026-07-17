@@ -11,9 +11,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api/auth", authRouter);
-app.use("/api/publicaciones", postsRouter);
-app.use("/api/users", usersRouter);
+app.use("/api", authRouter);
+app.use("/api", postsRouter);
+app.use("/api", usersRouter);
 
 app.use('', (req, res) => {
   res.status(404).send('Página no encontrada')

@@ -1,9 +1,9 @@
 import { validaString } from "../helpers/valHelpers.js";
 
 export const validateRegister = (req, res, next) => {
-    const { username, fullname, email, password } = req.body;
+    const { nombre_usuario , nombre_completo, email, password } = req.body;
     
-    if (!validaString(username) || !validaString(fullname) || !validaString(email) || !validaString(password)) {
+    if (!validaString(nombre_usuario) || !validaString(nombre_completo) || !validaString(email) || !validaString(password)) {
         return res.status(400).json({ error: 'Faltan campos obligatorios o son inválidos' });
     }
 

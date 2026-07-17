@@ -51,12 +51,16 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.publicacion (
-    id integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     usuariod_id integer,
     url_imagen character varying NOT NULL,
     descripcion character varying,
-    likes integer,
-    fecha_creacion timestamp without time zone
+    likes INT DEFAULT 0,
+    fecha_creacion TIMESTAMP DEFAULT 
+    CONSTRAINT publicacion_usuario_fk
+        FOREIGN KEY (usuariod_id)
+        REFERENCES public.usuario(id)
+        ON DELETE CASCADE
 );
 
 
@@ -68,10 +72,10 @@ ALTER TABLE public.publicacion OWNER TO postgres;
 --
 
 CREATE TABLE public.usuario (
-    id integer NOT NULL,
-    nombre_usuario character varying NOT NULL,
+    id SERIAL PRIMARY KEY,
+    nombre_usuario character UNIQUE NOT NULL,
     nombre_completo character varying NOT NULL,
-    email character varying,
+    email character UNIQUE NOT NULL,
     password character varying NOT NULL,
     biografia character varying,
     foto_perfil character varying

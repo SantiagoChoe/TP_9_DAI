@@ -2,24 +2,26 @@ import jwt from "jsonwebtoken"
 
 const SECRET_KEY = process.env.JWT_SECRET; 
 
-const verifyToken = (req, res, next) => {
-    const bearerHeader = req.headers['authorization'];
+export const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
-    if (typeof bearerHeader !== 'undefined') {
-        const bearer = bearerHeader.split(' ');
-        const token = bearer[1];
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({
+      message: "Token requerido o formato inválido"
+    });
+  }
 
-        jwt.verify(token, SECRET_KEY, (err, decoded) => {
-            if (err) {
-                return res.status(401).json({ message: 'Token inválido' });
-            }
+  const token = authHeader.split(" ")[1];
 
-            req.user = decoded;
-            next();
-        });
-    } else {
-        return res.status(403).json({ message: 'Token requerido' });
-    }
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    req.user = decoded;
+
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      message: "Token inválido o expirado"
+    });
+  }
 };
-
 export default verifyToken;

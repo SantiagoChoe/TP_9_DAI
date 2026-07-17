@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import jwt from "jsonwebtoken"
-import { verifyToken } from "../middlewares/verifyToken.js";
+import verifyToken from "../middlewares/verifyToken.js";
 import UserService from '../services/userservice.js';
 const router = Router();
 const svc = new UserService();
 
 
-router.get('/perfil ', verifyToken.verifyToken, async (req, res) => {
+router.get('/perfil', verifyToken, async (req, res) => {
   try {
     const userId = req.user.id; 
     
@@ -21,7 +21,7 @@ router.get('/perfil ', verifyToken.verifyToken, async (req, res) => {
   }
 });
 
-router.put('/perfil', verifyToken.verifyToken, async (req, res) => {
+router.put('/perfil', verifyToken, async (req, res) => {
   try {
     const userId = req.user.id;
     const { nombre_completo, biografia, foto_perfil } = req.body;

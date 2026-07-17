@@ -8,7 +8,7 @@ export default class PostService {
         try {
             await client.connect();
             const sql = `
-                SELECT p.id, p.usuariod_id, p.url_imagen, p.descripcion, p.likes, p.fecha_creacion, u.username, u.pfp AS user_pfp
+                SELECT p.id, p.usuariod_id, p.url_imagen, p.descripcion, p.likes, p.fecha_creacion, u.nombre_usuario, u.foto_perfil AS user_pfp
                 FROM "publicacion" p
                 JOIN "usuario" u ON p.usuariod_id = u.id
                 ORDER BY p.fecha_creacion DESC;
