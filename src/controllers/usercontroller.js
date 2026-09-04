@@ -7,6 +7,13 @@ const svc = new UserService();
 
 
 router.get('/perfil', verifyToken, async (req, res) => {
+  /*  #swagger.tags   = ['Usuarios']
+      #swagger.summary = 'Obtiene la información del perfil del usuario autenticado'
+      #swagger.responses[200] = {
+        description: 'Información del perfil',
+        schema: { $ref: '#/definitions/Perfil' }
+      }
+  */
   try {
     const userId = req.user.id; 
     
@@ -22,6 +29,17 @@ router.get('/perfil', verifyToken, async (req, res) => {
 });
 
 router.put('/perfil', verifyToken, async (req, res) => {
+  /*  #swagger.tags   = ['Usuarios']
+      #swagger.summary = 'Actualiza todos los datos del usuario autenticado'
+      #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Nuevos datos del usuario',
+        required: true,
+        schema: { $ref: '#/definitions/UsuarioInput' }
+      }
+      #swagger.responses[200] = { description: 'Usuario actualizado' }
+      #swagger.responses[404] = { description: 'Usuario no encontrado' }
+  */
   try {
     const userId = req.user.id;
     const { nombre_completo, biografia, foto_perfil } = req.body;

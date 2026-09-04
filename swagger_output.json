@@ -1,0 +1,270 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Clon de instagram",
+    "description": "Un clon de instagram con funcionalidades básicas como registro, inicio de sesión, creación de publicaciones y visualización de perfiles de usuario.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/registro": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Crea un nuevo usuario",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del usuario a crear",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UsuarioInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuario creado exitosamente"
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Inicia sesión como usuario",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del usuario para iniciar sesión",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UsuarioInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inicio de sesión exitoso"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Credenciales inválidas"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "Publicaciones"
+        ],
+        "summary": "Obtiene la lista completa de publicaciones",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Lista de publicaciones",
+            "schema": {
+              "$ref": "#/definitions/Publicacion"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Publicaciones"
+        ],
+        "summary": "Crea una nueva publicación",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos de la publicación a crear",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PublicacionInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Publicación creada exitosamente"
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/perfil": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Obtiene la información del perfil del usuario autenticado",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Información del perfil",
+            "schema": {
+              "$ref": "#/definitions/Perfil"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Actualiza todos los datos del usuario autenticado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Nuevos datos del usuario",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UsuarioInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario actualizado"
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UsuarioInput": {
+      "type": "object",
+      "properties": {
+        "nombre_usuario": {
+          "type": "string",
+          "example": "usuario123"
+        },
+        "nombre_completo": {
+          "type": "string",
+          "example": "Nombre Completo"
+        },
+        "email": {
+          "type": "string",
+          "example": "usuario123@example.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "contraseña123"
+        },
+        "biografia": {
+          "type": "string",
+          "example": "Biografía del usuario"
+        },
+        "foto_perfil": {
+          "type": "string",
+          "example": "url_de_la_foto"
+        }
+      }
+    },
+    "PublicacionInput": {
+      "type": "object",
+      "properties": {
+        "url_imagen": {
+          "type": "string",
+          "example": "url_de_la_imagen"
+        },
+        "descripcion": {
+          "type": "string",
+          "example": "Descripción de la publicación"
+        }
+      }
+    },
+    "Perfil": {
+      "type": "object",
+      "properties": {
+        "nombre_usuario": {
+          "type": "string",
+          "example": "usuario123"
+        },
+        "nombre_completo": {
+          "type": "string",
+          "example": "Nombre Completo"
+        },
+        "email": {
+          "type": "string",
+          "example": "usuario123@example.com"
+        },
+        "biografia": {
+          "type": "string",
+          "example": "Biografía del usuario"
+        },
+        "foto_perfil": {
+          "type": "string",
+          "example": "url_de_la_foto"
+        }
+      }
+    },
+    "Publicacion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "url_imagen": {
+          "type": "string",
+          "example": "url_de_la_imagen"
+        },
+        "descripcion": {
+          "type": "string",
+          "example": "Descripción de la publicación"
+        }
+      }
+    }
+  }
+}

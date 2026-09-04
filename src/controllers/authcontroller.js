@@ -11,6 +11,17 @@ const svc = new AuthService();
 const SECRET_KEY = process.env.JWT_SECRET; 
 
 router.post('/registro', validateRegister, async (req, res) => {
+  /*  #swagger.tags   = ['Usuarios']
+      #swagger.summary = 'Crea un nuevo usuario'
+      #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Datos del usuario a crear',
+        required: true,
+        schema: { $ref: '#/definitions/UsuarioInput' }
+      }
+      #swagger.responses[201] = { description: 'Usuario creado exitosamente' }
+      #swagger.responses[400] = { description: 'Datos inválidos' }
+  */
   const { nombre_usuario , nombre_completo , email, password, biografia , foto_perfil } = req.body;
   
   try {
@@ -42,6 +53,17 @@ router.post('/registro', validateRegister, async (req, res) => {
 });
 
 router.post('/login', validateUser, async (req, res) => {
+  /*  #swagger.tags   = ['Usuarios']
+      #swagger.summary = 'Inicia sesión como usuario'
+      #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Datos del usuario para iniciar sesión',
+        required: true,
+        schema: { $ref: '#/definitions/UsuarioInput' }
+      }
+      #swagger.responses[200] = { description: 'Inicio de sesión exitoso' }
+      #swagger.responses[401] = { description: 'Credenciales inválidas' }
+  */
   const { nombre_usuario, password } = req.body;
 
   try { 

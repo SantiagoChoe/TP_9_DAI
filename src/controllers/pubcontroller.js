@@ -6,6 +6,13 @@ const router = Router();
 const svc = new PubService();
 
 router.get("/", async (req, res) => {
+  /*  #swagger.tags   = ['Publicaciones']
+      #swagger.summary = 'Obtiene la lista completa de publicaciones'
+      #swagger.responses[200] = {
+        description: 'Lista de publicaciones',
+        schema: { $ref: '#/definitions/Publicacion' }
+      }
+  */
   try {
     const posts = await svc.getAllPostsAsync();
     return res.status(200).json(posts);
@@ -15,6 +22,17 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", verifyToken, valPost, async (req, res) => {
+  /*  #swagger.tags   = ['Publicaciones']
+      #swagger.summary = 'Crea una nueva publicación'
+      #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Datos de la publicación a crear',
+        required: true,
+        schema: { $ref: '#/definitions/PublicacionInput' }
+      }
+      #swagger.responses[201] = { description: 'Publicación creada exitosamente' }
+      #swagger.responses[400] = { description: 'Datos inválidos' }
+  */
   try {
     const { url_imagen, descripcion } = req.body;
     const usuariod_id = req.user.id; 

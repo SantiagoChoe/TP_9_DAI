@@ -1,4 +1,6 @@
 import express from "express";
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from '../swagger_output.json' with { type: 'json' };
 import cors from "cors";
 import authRouter from "./routes/auth.js";
 import postsRouter from "./routes/publicaciones.js";
@@ -14,6 +16,7 @@ app.use(express.json());
 app.use("/api", authRouter);
 app.use("/api", postsRouter);
 app.use("/api", usersRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use('', (req, res) => {
   res.status(404).send('Página no encontrada')
