@@ -6,15 +6,15 @@
     "version": "1.0.0"
   },
   "host": "localhost:3000",
-  "basePath": "/",
+  "basePath": "/api",
   "schemes": [
     "http"
   ],
   "paths": {
-    "/registro": {
+    "/auth/registro": {
       "post": {
         "tags": [
-          "Usuarios"
+          "Auth"
         ],
         "summary": "Crea un nuevo usuario",
         "description": "",
@@ -42,10 +42,10 @@
         }
       }
     },
-    "/login": {
+    "/auth/login": {
       "post": {
         "tags": [
-          "Usuarios"
+          "Auth"
         ],
         "summary": "Inicia sesión como usuario",
         "description": "",
@@ -79,7 +79,7 @@
         }
       }
     },
-    "/": {
+    "/publicaciones/": {
       "get": {
         "tags": [
           "Publicaciones"
@@ -128,7 +128,7 @@
         }
       }
     },
-    "/perfil": {
+    "/usuarios/perfil": {
       "get": {
         "tags": [
           "Usuarios"

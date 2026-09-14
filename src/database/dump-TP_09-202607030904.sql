@@ -56,7 +56,7 @@ CREATE TABLE public.publicacion (
     url_imagen character varying NOT NULL,
     descripcion character varying,
     likes INT DEFAULT 0,
-    fecha_creacion TIMESTAMP DEFAULT 
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     CONSTRAINT publicacion_usuario_fk
         FOREIGN KEY (usuariod_id)
         REFERENCES public.usuario(id)

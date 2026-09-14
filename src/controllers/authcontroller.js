@@ -11,7 +11,7 @@ const svc = new AuthService();
 const SECRET_KEY = process.env.JWT_SECRET; 
 
 router.post('/registro', validateRegister, async (req, res) => {
-  /*  #swagger.tags   = ['Usuarios']
+  /*  #swagger.tags   = ['Auth']
       #swagger.summary = 'Crea un nuevo usuario'
       #swagger.parameters['body'] = {
         in: 'body',
@@ -48,12 +48,16 @@ router.post('/registro', validateRegister, async (req, res) => {
       return res.status(400).send(error);
     }
   } catch (error) {
-    res.status(500).json({ message: 'Error interno del servidor' });
-  }
+    console.error("Error original:", error); // Revisa la terminal de Node
+      res.status(500).json({ 
+        message: 'Error interno del servidor', 
+        detalle: error.message // Te devolverá la causa exacta en Swagger/Postman
+      }); 
+    }
 });
 
 router.post('/login', validateUser, async (req, res) => {
-  /*  #swagger.tags   = ['Usuarios']
+  /*  #swagger.tags   = ['Auth']
       #swagger.summary = 'Inicia sesión como usuario'
       #swagger.parameters['body'] = {
         in: 'body',
