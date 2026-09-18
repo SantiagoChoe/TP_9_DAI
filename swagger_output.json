@@ -10,6 +10,14 @@
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Ingresá el token JWT (Swagger agrega 'Bearer ' automáticamente)"
+    }
+  },
   "paths": {
     "/auth/registro": {
       "post": {
@@ -122,10 +130,18 @@
           "400": {
             "description": "Datos inválidos"
           },
+          "401": {
+            "description": "Token inválido o ausente"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/usuarios/perfil": {
@@ -148,7 +164,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -177,7 +198,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },

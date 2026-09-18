@@ -9,6 +9,7 @@ const svc = new UserService();
 router.get('/perfil', verifyToken, async (req, res) => {
   /*  #swagger.tags   = ['Usuarios']
       #swagger.summary = 'Obtiene la información del perfil del usuario autenticado'
+      #swagger.security = [{ "bearerAuth": [] }]
       #swagger.responses[200] = {
         description: 'Información del perfil',
         schema: { $ref: '#/definitions/Perfil' }
@@ -31,6 +32,7 @@ router.get('/perfil', verifyToken, async (req, res) => {
 router.put('/perfil', verifyToken, async (req, res) => {
   /*  #swagger.tags   = ['Usuarios']
       #swagger.summary = 'Actualiza todos los datos del usuario autenticado'
+      #swagger.security = [{ "bearerAuth": [] }]
       #swagger.parameters['body'] = {
         in: 'body',
         description: 'Nuevos datos del usuario',

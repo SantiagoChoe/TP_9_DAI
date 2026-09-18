@@ -45,10 +45,10 @@ router.post('/registro', validateRegister, async (req, res) => {
         image: foto_perfil 
     });
   } catch (error) {
-    console.error("Error original:", error); // Revisa la terminal de Node
+    console.error("Error original:", error);
       res.status(500).json({ 
         message: 'Error interno del servidor', 
-        detalle: error.message // Te devolverá la causa exacta en Swagger/Postman
+        detalle: error.message
       }); 
     }
 });
@@ -87,7 +87,7 @@ router.post('/login', validateUser, async (req, res) => {
 
       return res.status(200).json({ 
         message: 'Login successful', 
-        token: `Bearer ${token}`, 
+        token: token,   
         user 
       });
     } else {

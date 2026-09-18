@@ -564,5 +564,12 @@ https://docs.google.com/document/d/1yS4OzeaLLAwbB6meAqV4-1xrHGF-pcCZQKUj1I3Qao8/
 ## -Acceso directo a la documentación Swagger:
 http://localhost:3000/api-docs
 
+## -Como aplicar el token dentro del Swagger:
+
+1. Inicia sesión dentro del swagger
+2. copia el token directo que te mande el /login
+3. toca en "Authorize" en el Swagger UI
+4. dentro del "Authorize" escribis: Bearer "tu token" (si o si debe haber un espaacio entre el token y Bearer)
+
 
 

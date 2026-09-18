@@ -9,6 +9,14 @@ const doc = {
     host: 'localhost:3000',
     basePath: '/api',
     schemes: ['http'],
+    securityDefinitions: {
+        bearerAuth: {
+            type: 'apiKey',
+            name: 'Authorization',
+            in: 'header',
+            description: "Ingresá el token JWT (Swagger agrega 'Bearer ' automáticamente)"
+        }
+    },
     definitions: {
         UsuarioInput: {
             nombre_usuario: "usuario123",
@@ -40,8 +48,8 @@ const doc = {
 const outputFile = './swagger_output.json';
 const endpointsFiles = [
     './src/routes/auth.js',
-  './src/routes/publicaciones.js',
-  './src/routes/user.js'
+    './src/routes/publicaciones.js',
+    './src/routes/user.js'
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {

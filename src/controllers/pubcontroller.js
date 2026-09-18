@@ -24,6 +24,7 @@ router.get("/", async (req, res) => {
 router.post("/", verifyToken, valPost, async (req, res) => {
   /*  #swagger.tags   = ['Publicaciones']
       #swagger.summary = 'Crea una nueva publicación'
+      #swagger.security = [{ "bearerAuth": [] }]
       #swagger.parameters['body'] = {
         in: 'body',
         description: 'Datos de la publicación a crear',
@@ -32,6 +33,7 @@ router.post("/", verifyToken, valPost, async (req, res) => {
       }
       #swagger.responses[201] = { description: 'Publicación creada exitosamente' }
       #swagger.responses[400] = { description: 'Datos inválidos' }
+      #swagger.responses[401] = { description: 'Token inválido o ausente' }
   */
   try {
     const { url_imagen, descripcion } = req.body;
