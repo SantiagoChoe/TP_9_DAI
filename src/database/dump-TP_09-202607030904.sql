@@ -73,9 +73,9 @@ ALTER TABLE public.publicacion OWNER TO postgres;
 
 CREATE TABLE public.usuario (
     id SERIAL PRIMARY KEY,
-    nombre_usuario character UNIQUE NOT NULL,
+    nombre_usuario character varying UNIQUE NOT NULL,
     nombre_completo character varying NOT NULL,
-    email character UNIQUE NOT NULL,
+    email character varying UNIQUE NOT NULL,
     password character varying NOT NULL,
     biografia character varying,
     foto_perfil character varying

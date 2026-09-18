@@ -545,3 +545,19 @@ http://localhost:3000
 * [x] Archivo `.env.example`.
 * [x] Base de datos relacional con usuarios y publicaciones.
 * [x] Relación entre usuarios y publicaciones mediante clave foránea.
+
+# TP 11 - Documentación de API
+
+Deberán seleccionar un Trabajo Práctico anterior de la materia en el que hayan trabajado con una API.
+
+La API seleccionada puede ser:
+
+Una API propia, desarrollada por el grupo.
+Una API externa, consumida desde el proyecto.
+Una API desarrollada como parte de un proyecto web o mobile.
+A partir de ese proyecto deberán incorporar Swagger para documentar los endpoints disponibles y permitir su consulta y prueba desde una interfaz web.
+Recomendación: La API elegida debe constar de al menos unos 6 endpoints como mínimo.
+
+## Docs - Documentación de API:
+https://docs.google.com/document/d/1yS4OzeaLLAwbB6meAqV4-1xrHGF-pcCZQKUj1I3Qao8/edit?usp=sharing
+

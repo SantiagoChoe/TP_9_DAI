@@ -31,22 +31,19 @@ router.post('/registro', validateRegister, async (req, res) => {
     }
     
     const hashedPassword = await bcrypt.hash(password, 10);
-    const error = await svc.createAsync({
+    const nuevoUsuario = await svc.createAsync({
       ...req.body,
       password: hashedPassword
     });
-    if (error == null) {
-      return res.status(201).json({ 
-          message: 'Usuario registrado con éxito', 
-          user: nombre_usuario,
-          user_completo: nombre_completo,
-          email: email,
-          bio: biografia,
-          image: foto_perfil 
-      });
-    } else {
-      return res.status(400).send(error);
-    }
+
+    return res.status(201).json({ 
+        message: 'Usuario registrado con éxito', 
+        user: nuevoUsuario.nombre_usuario,
+        user_completo: nombre_completo,
+        email: nuevoUsuario.email,
+        bio: biografia,
+        image: foto_perfil 
+    });
   } catch (error) {
     console.error("Error original:", error); // Revisa la terminal de Node
       res.status(500).json({ 
