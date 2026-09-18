@@ -561,3 +561,8 @@ Recomendación: La API elegida debe constar de al menos unos 6 endpoints como m�
 ## Docs - Documentación de API:
 https://docs.google.com/document/d/1yS4OzeaLLAwbB6meAqV4-1xrHGF-pcCZQKUj1I3Qao8/edit?usp=sharing
 
+## -Acceso directo a la documentación Swagger:
+http://localhost:3000/api-docs
+
+
+
